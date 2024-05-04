@@ -7,15 +7,15 @@ services:
     command: pip install -r /app/requirements.txt  # Install libraries during startup
     # ... otros parámetros de configuración
   
-  odoo_v2:
+  wweb:
     image: odoo:17.0
 
     depends_on:
       - python
-      - db_v2
+      - db
       
     ports:
-      - "8070:8070"
+      - "8069:8069"
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
@@ -24,7 +24,7 @@ services:
    
       
 
-  db_v2:
+  db:
     image: postgres:15
     environment:
       - POSTGRES_DB=postgres
