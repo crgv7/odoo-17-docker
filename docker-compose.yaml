@@ -11,7 +11,9 @@ services:
     image: odoo:17.0
 
     depends_on:
+      - python
       - db
+      
     ports:
       - "8069:8069"
     volumes:
