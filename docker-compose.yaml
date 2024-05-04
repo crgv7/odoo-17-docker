@@ -7,7 +7,7 @@ services:
     command: pip install -r /app/requirements.txt  # Install libraries during startup
     # ... otros parámetros de configuración
   
-  wweb:
+  web:
     image: odoo:17.0
 
     depends_on:
