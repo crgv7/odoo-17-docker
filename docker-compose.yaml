@@ -1,17 +1,12 @@
 version: '3.1'
 services:
-  python: 
-    image: python:3.9
-    volumes:
-      - ./requirements.txt:/app/requirements.txt  # Mount requirements.txt
-    command: pip install -r /app/requirements.txt  # Install libraries during startup
-    # ... otros parámetros de configuración
+
   
   odoo_v2:
-    image: odoo:17.0
+    build:
+      dockerfile: dockerfile
 
     depends_on:
-      - python
       - db_v2
       
     ports:
@@ -21,6 +16,9 @@ services:
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
       - ./addons-customize:/mnt/extra-addons-customize
+      - ./requirements.txt:/app/requirements.txt
+  
+ 
    
       
 
