@@ -1,17 +1,23 @@
 version: '3.1'
 services:
+  
   odoo_v2:
-    image: odoo:17.0
+    image: odoo:17
+    
     depends_on:
       - db_v2
+      
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
       - ./addons-customize:/mnt/extra-addons-customize
       - ./requirements.txt:/app/requirements.txt
-  
+
+   
+
  #cd etc/nginx/conf.d
+   
   db_v2:
     image: postgres:15
     environment:
@@ -23,8 +29,11 @@ services:
     image: nginx
     ports:
       - "80:80"
+      #- "443:443"
+
     volumes:
       - ./nginx:/etc/nginx/conf.d
+      #- ./nginx/ssl/:/etc/ssl/nginx/
     depends_on:
       - odoo_v2  
   
